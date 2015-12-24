@@ -15,24 +15,24 @@ public class newGameItemHwnd : MonoBehaviour {
 
     void OnMouseOver()
     {
-        guiText.material.color = Color.red;
+        GetComponent<GUIText>().material.color = Color.red;
     }
 
     void OnMouseExit()
     {
-        guiText.material.color = Color.white;
+        GetComponent<GUIText>().material.color = Color.white;
     }
 
     void OnMouseUp()
     {
-        Debug.Log(guiText.name);
-        if (guiText.name == "newGame")
+        Debug.Log(GetComponent<GUIText>().name);
+        if (GetComponent<GUIText>().name == "newGame")
             Application.LoadLevel(1);
         else
-            if (guiText.name == "multiplayer")
+            if (GetComponent<GUIText>().name == "multiplayer")
                 Application.LoadLevel(2);
             else
-                if (guiText.name == "exitGame")
+                if (GetComponent<GUIText>().name == "exitGame")
                     Application.Quit();
     }
 }

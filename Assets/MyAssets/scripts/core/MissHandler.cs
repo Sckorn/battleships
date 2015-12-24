@@ -15,6 +15,6 @@ public class MissHandler : MonoBehaviour {
 
     public void PlayMiss()
     {
-        audio.Play();
+        GetComponent<AudioSource>().Play();
     }
 }

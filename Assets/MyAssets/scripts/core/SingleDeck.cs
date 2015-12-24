@@ -22,22 +22,22 @@ public class SingleDeck : Ship
     {
         GameObject playaField = GameObject.Find("player_field");
         GameObject blueBor = GameObject.Find("blueBorder");
-        Rect pIns = blueBor.guiTexture.pixelInset;
+        Rect pIns = blueBor.GetComponent<GUITexture>().pixelInset;
         Rect tmp = new Rect();
-        tmp.yMin = fieldResize.topMargin + playaField.guiTexture.pixelInset.height - this.Y * cellSize;
+        tmp.yMin = fieldResize.topMargin + playaField.GetComponent<GUITexture>().pixelInset.height - this.Y * cellSize;
         tmp.xMin = fieldResize.leftMargin;
 
         if (orientation > 0)
         {
             tmp.yMax = tmp.yMin - cellSize;
             tmp.xMax = tmp.xMin + cellSize * this.size;
-            blueBor.guiTexture.pixelInset = tmp;
+            blueBor.GetComponent<GUITexture>().pixelInset = tmp;
         }
         else
         {
             tmp.yMax = tmp.yMin - this.size * cellSize;
             tmp.xMax = tmp.xMin + cellSize;
-            blueBor.guiTexture.pixelInset = tmp;
+            blueBor.GetComponent<GUITexture>().pixelInset = tmp;
         }
     }
 
@@ -57,17 +57,17 @@ public class SingleDeck : Ship
         if (allowRealloc)
         {
             GameObject blueBor = GameObject.Find("blueBorder");
-            Rect pIns = blueBor.guiTexture.pixelInset;
+            Rect pIns = blueBor.GetComponent<GUITexture>().pixelInset;
             int diffX = x - this.currentX;
             int diffY = y - this.currentY;
 
             if (orientation > 0)
             {
-                blueBor.guiTexture.pixelInset = new Rect(pIns.xMin + (diffX * cellSize), pIns.yMin - (diffY * cellSize), pIns.width, pIns.height);
+                blueBor.GetComponent<GUITexture>().pixelInset = new Rect(pIns.xMin + (diffX * cellSize), pIns.yMin - (diffY * cellSize), pIns.width, pIns.height);
             }
             else
             {
-                blueBor.guiTexture.pixelInset = new Rect(pIns.xMin + (diffX * cellSize), pIns.yMin - (diffY * cellSize), pIns.width, pIns.height);
+                blueBor.GetComponent<GUITexture>().pixelInset = new Rect(pIns.xMin + (diffX * cellSize), pIns.yMin - (diffY * cellSize), pIns.width, pIns.height);
             }
 
             this.currentX = x;
@@ -79,11 +79,11 @@ public class SingleDeck : Ship
     {
         bool allowChange = false;
         GameObject blueBor = GameObject.Find("blueBorder");
-        Rect pIns = blueBor.guiTexture.pixelInset;
+        Rect pIns = blueBor.GetComponent<GUITexture>().pixelInset;
         GameObject playaField = GameObject.Find("player_field");
         Rect rt = new Rect();
         rt.xMin = fieldResize.leftMargin + this.X * cellSize;
-        rt.yMax = fieldResize.topMargin + playaField.guiTexture.pixelInset.height - (this.Y) * cellSize;
+        rt.yMax = fieldResize.topMargin + playaField.GetComponent<GUITexture>().pixelInset.height - (this.Y) * cellSize;
 
         if (orientation > 0)
         {
@@ -101,7 +101,7 @@ public class SingleDeck : Ship
         }
 
         if (allowChange)
-            blueBor.guiTexture.pixelInset = rt;
+            blueBor.GetComponent<GUITexture>().pixelInset = rt;
     }
 
     public override void Bind()

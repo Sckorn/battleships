@@ -30,15 +30,15 @@ public class QuadDeck : Ship {
     public override void Allocate(int orientation, int x, int y, float cellSize)
     {
         GameObject blueBor = GameObject.Find("blueBorder");
-        Rect pIns = blueBor.guiTexture.pixelInset;
+        Rect pIns = blueBor.GetComponent<GUITexture>().pixelInset;
 
         if (orientation > 0)
         {
-            blueBor.guiTexture.pixelInset = new Rect(pIns.xMin + (x * cellSize) - cellSize, pIns.yMin - (y * cellSize), pIns.width * this.size, -(this.Orientation * cellSize));
+            blueBor.GetComponent<GUITexture>().pixelInset = new Rect(pIns.xMin + (x * cellSize) - cellSize, pIns.yMin - (y * cellSize), pIns.width * this.size, -(this.Orientation * cellSize));
         }
         else
         {
-            blueBor.guiTexture.pixelInset = new Rect(pIns.xMin + (x * cellSize), pIns.yMin - (y * cellSize), cellSize, Mathf.Abs(pIns.height) * this.size * this.Orientation);
+            blueBor.GetComponent<GUITexture>().pixelInset = new Rect(pIns.xMin + (x * cellSize), pIns.yMin - (y * cellSize), cellSize, Mathf.Abs(pIns.height) * this.size * this.Orientation);
         }
         //blueBor.guiTexture.pixelInset = new Rect(pIns.left + (x * cellSize), pIns.top - (((this.size - 1) * cellSize) + (y * cellSize) ), (orientation == 1) ? pIns.width * this.size : pIns.width, (orientation == -1) ? pIns.height * this.size : pIns.height);
     }
@@ -59,17 +59,17 @@ public class QuadDeck : Ship {
         if (allowRealloc)
         {
             GameObject blueBor = GameObject.Find("blueBorder");
-            Rect pIns = blueBor.guiTexture.pixelInset;
+            Rect pIns = blueBor.GetComponent<GUITexture>().pixelInset;
             int diffX = x - this.currentX;
             int diffY = y - this.currentY;
 
             if (orientation > 0)
             {
-                blueBor.guiTexture.pixelInset = new Rect(pIns.xMin + (diffX * cellSize), pIns.yMin - (diffY * cellSize), pIns.width, pIns.height);
+                blueBor.GetComponent<GUITexture>().pixelInset = new Rect(pIns.xMin + (diffX * cellSize), pIns.yMin - (diffY * cellSize), pIns.width, pIns.height);
             }
             else
             {
-                blueBor.guiTexture.pixelInset = new Rect(pIns.xMin + (diffX * cellSize), pIns.yMin - (diffY * cellSize), pIns.width, pIns.height);
+                blueBor.GetComponent<GUITexture>().pixelInset = new Rect(pIns.xMin + (diffX * cellSize), pIns.yMin - (diffY * cellSize), pIns.width, pIns.height);
             }
 
             this.currentX = x;
@@ -81,11 +81,11 @@ public class QuadDeck : Ship {
     {
         bool allowChange = false;
         GameObject blueBor = GameObject.Find("blueBorder");
-        Rect pIns = blueBor.guiTexture.pixelInset;
+        Rect pIns = blueBor.GetComponent<GUITexture>().pixelInset;
         GameObject playaField = GameObject.Find("player_field");
         Rect rt = new Rect();
         rt.xMin = fieldResize.leftMargin + this.X * cellSize;
-        rt.yMax = fieldResize.topMargin + playaField.guiTexture.pixelInset.height - (this.Y) * cellSize;
+        rt.yMax = fieldResize.topMargin + playaField.GetComponent<GUITexture>().pixelInset.height - (this.Y) * cellSize;
 
         if (orientation > 0)
         { 
@@ -103,7 +103,7 @@ public class QuadDeck : Ship {
         }
 
         if(allowChange)
-            blueBor.guiTexture.pixelInset = rt;
+            blueBor.GetComponent<GUITexture>().pixelInset = rt;
     }
 
     public override void Bind()

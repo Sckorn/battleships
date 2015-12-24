@@ -11,7 +11,7 @@ public class fieldResize : MonoBehaviour {
 
     public void Resize()
     {
-        Rect fieldSizes = gameObject.guiTexture.GetScreenRect();
+        Rect fieldSizes = gameObject.GetComponent<GUITexture>().GetScreenRect();
 
         float halfOfScreen = Screen.width / 2;
 
@@ -37,25 +37,25 @@ public class fieldResize : MonoBehaviour {
         float dimension = Mathf.Min(aimHeight, aimWidth);
         
         if (gameObject.name == "player_field")
-            gameObject.guiTexture.pixelInset = new Rect(fieldResize.leftMargin, fieldResize.topMargin, dimension, dimension);
+            gameObject.GetComponent<GUITexture>().pixelInset = new Rect(fieldResize.leftMargin, fieldResize.topMargin, dimension, dimension);
         else
-            gameObject.guiTexture.pixelInset = new Rect(halfOfScreen + fieldResize.leftMargin, fieldResize.topMargin, dimension, dimension);
+            gameObject.GetComponent<GUITexture>().pixelInset = new Rect(halfOfScreen + fieldResize.leftMargin, fieldResize.topMargin, dimension, dimension);
         Jobster jb = GameObject.Find("jobster").GetComponent<Jobster>();
-        float cellSize = Mathf.Ceil(jb.startedGame.Human.currentField.realObjectReference.guiTexture.pixelInset.width / 10);
+        float cellSize = Mathf.Ceil(jb.startedGame.Human.currentField.realObjectReference.GetComponent<GUITexture>().pixelInset.width / 10);
         jb.startedGame.Human.currentField.singleCellSize = cellSize;
         GameObject crosshair = GameObject.Find("crosshair");
         if (fixDimension == 1)
-            crosshair.guiTexture.pixelInset = new Rect(halfOfScreen + fieldResize.leftMargin, Mathf.Floor(Screen.height - fieldResize.topMargin - cellSize - fixValue), cellSize, cellSize);
+            crosshair.GetComponent<GUITexture>().pixelInset = new Rect(halfOfScreen + fieldResize.leftMargin, Mathf.Floor(Screen.height - fieldResize.topMargin - cellSize - fixValue), cellSize, cellSize);
         else if (fixDimension == 2)
-            crosshair.guiTexture.pixelInset = new Rect(halfOfScreen + fieldResize.leftMargin, Mathf.Floor(Screen.height - fieldResize.topMargin - cellSize), cellSize, cellSize);
+            crosshair.GetComponent<GUITexture>().pixelInset = new Rect(halfOfScreen + fieldResize.leftMargin, Mathf.Floor(Screen.height - fieldResize.topMargin - cellSize), cellSize, cellSize);
 
         GameObject blueBor = GameObject.Find("blueBorder");
         if (blueBor != null)
         {
             if (fixDimension == 1)
-                blueBor.guiTexture.pixelInset = new Rect(fieldResize.leftMargin, Mathf.Floor(Screen.height - fieldResize.topMargin - fixValue), cellSize, cellSize);
+                blueBor.GetComponent<GUITexture>().pixelInset = new Rect(fieldResize.leftMargin, Mathf.Floor(Screen.height - fieldResize.topMargin - fixValue), cellSize, cellSize);
             else if (fixDimension == 2)
-                blueBor.guiTexture.pixelInset = new Rect(fieldResize.leftMargin, Mathf.Floor(Screen.height - fieldResize.topMargin), cellSize, cellSize);
+                blueBor.GetComponent<GUITexture>().pixelInset = new Rect(fieldResize.leftMargin, Mathf.Floor(Screen.height - fieldResize.topMargin), cellSize, cellSize);
 
             blueBor.transform.position = new Vector3(0, 0, 0.4f);
         }

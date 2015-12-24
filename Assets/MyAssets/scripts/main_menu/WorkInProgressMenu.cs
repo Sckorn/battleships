@@ -7,17 +7,17 @@ public class WorkInProgressMenu : MonoBehaviour {
 	void Start () {
         GameObject wnp = GameObject.Find("workInProgress");
 
-        Rect wnpRect = wnp.guiText.GetScreenRect();
+        Rect wnpRect = wnp.GetComponent<GUIText>().GetScreenRect();
 
-        double ratio = (wnp.guiText.fontSize) / wnpRect.width;
+        double ratio = (wnp.GetComponent<GUIText>().fontSize) / wnpRect.width;
 
         double aimFont = Screen.width * ratio;
 
-        wnp.guiText.fontSize = (int) aimFont;
+        wnp.GetComponent<GUIText>().fontSize = (int) aimFont;
 
-        wnp.guiText.pixelOffset = new Vector2((Screen.width / 2), (Screen.height / 2));
+        wnp.GetComponent<GUIText>().pixelOffset = new Vector2((Screen.width / 2), (Screen.height / 2));
 
-        gameObject.guiText.pixelOffset = new Vector2((Screen.width / 2), 50);
+        gameObject.GetComponent<GUIText>().pixelOffset = new Vector2((Screen.width / 2), 50);
 	}
 	
 	// Update is called once per frame
@@ -27,12 +27,12 @@ public class WorkInProgressMenu : MonoBehaviour {
 
     void OnMouseOver()
     {
-        guiText.material.color = Color.red;
+        GetComponent<GUIText>().material.color = Color.red;
     }
 
     void OnMouseExit()
     {
-        guiText.material.color = Color.white;
+        GetComponent<GUIText>().material.color = Color.white;
     }
 
     void OnMouseUp()

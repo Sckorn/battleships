@@ -36,7 +36,7 @@ public class Morpher : MonoBehaviour {
     {
         GameObject blueBor = GameObject.Find("blueBorder");
         GameObject go = (GameObject) Instantiate((orientation > 0) ? this.battleShipHor : this.battleShipVert, new Vector3(0, 0, 0.5f), Quaternion.identity);
-        go.guiTexture.pixelInset = blueBor.guiTexture.pixelInset;
+        go.GetComponent<GUITexture>().pixelInset = blueBor.GetComponent<GUITexture>().pixelInset;
     }
 
     public void InstShotCell(int x, int y, int field, char mode)
@@ -53,7 +53,7 @@ public class Morpher : MonoBehaviour {
         }
         else // enemy
         {
-            resultX = jb.startedGame.AI.currentField.realObjectReference.guiTexture.pixelInset.xMin + x * jb.startedGame.Human.currentField.singleCellSize;
+            resultX = jb.startedGame.AI.currentField.realObjectReference.GetComponent<GUITexture>().pixelInset.xMin + x * jb.startedGame.Human.currentField.singleCellSize;
             go = (GameObject)Instantiate(resultingPref, new Vector3(0, 0, 0), Quaternion.identity);
         }
 
@@ -64,6 +64,6 @@ public class Morpher : MonoBehaviour {
         rt.xMax = resultX + jb.startedGame.Human.currentField.singleCellSize;
         rt.xMin = resultX;
 
-        go.guiTexture.pixelInset = rt;
+        go.GetComponent<GUITexture>().pixelInset = rt;
     }
 }

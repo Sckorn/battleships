@@ -79,8 +79,8 @@ public class Field {
 
     public void moveCrosshair(int dirX, int dirY)
     {
-        Rect pIns = this.crossHair.guiTexture.pixelInset;
-        this.crossHair.guiTexture.pixelInset = new Rect(pIns.xMin + (this.cellSize * dirX), pIns.yMin - (this.cellSize * dirY), pIns.width, pIns.height);
+        Rect pIns = this.crossHair.GetComponent<GUITexture>().pixelInset;
+        this.crossHair.GetComponent<GUITexture>().pixelInset = new Rect(pIns.xMin + (this.cellSize * dirX), pIns.yMin - (this.cellSize * dirY), pIns.width, pIns.height);
         this.crosshairCellX = this.crosshairCellX + dirX;
         this.crosshairCellY = this.crosshairCellY + dirY;
     }
